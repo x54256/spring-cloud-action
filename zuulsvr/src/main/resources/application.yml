@@ -1,0 +1,50 @@
+eureka:
+  instance:
+    preferIpAddress: true # 注册服务的ip，而不是服务器名称
+  client:
+    registerWithEureka: true  # 注册到Eureka
+    fetchRegistry: true # 本地缓存注册信息
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 5555
+
+
+# 手动映射路由
+
+zuul:
+  routes:
+    organizationservice: /organization/**
+    licensingservice: # 映射那些不受Eureka管理的服务，例如python写的许可证服务；这样有一个缺点就是只有一条路径可以访问，当然SpringCloudSidecar已经为我们造好轮子来应对这种情况了
+      path: /licensestatic/**
+      url: http://127.0.0.1:8080
+  ignored-services: organizationservice # 隐藏自动映射的路由，如果要排除所有基于Eureka映射的路由，将其设置为*
+  prefix: /api
+
+
+# 它也可以结合SpringCloudConfig通过/refersh接口重新加载配置
+
+
+# 服务超时设置
+
+## 设置调用全部微服务超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+## 设置调用指定微服务超时时间
+hystrix:
+  command:
+    organizationservice:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+## 如果超时时间超过5s就会触发ribbon的超时，所以也要修改ribbon的超时事件
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
