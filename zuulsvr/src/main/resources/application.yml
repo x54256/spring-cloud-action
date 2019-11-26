@@ -35,10 +35,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000
-## 设置调用指定微服务超时时间
-hystrix:
-  command:
-    organizationservice:
+    organizationservice:  # 设置调用指定微服务超时时间
       execution:
         isolation:
           thread:
@@ -48,3 +45,10 @@ hystrix:
 ribbon:
   ReadTimeout: 5000
   ConnectTimeout: 5000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes,filters
+
+## 测试地址：http://127.0.0.1:5555/actuator/routes
