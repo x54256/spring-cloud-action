@@ -7,7 +7,8 @@ spring:
     config:
       server:
         native:
-          search-locations: file:///Users/x5456/Desktop/spring-cloud-action/confserver/src/main/resources/config/licensingservice # 本地文件所在路径
+          search-locations: file:///Users/x5456/Desktop/spring-cloud-action/confserver/src/main/resources/config/licensingservice,
+           file:///Users/x5456/Desktop/spring-cloud-action/confserver/src/main/resources/config/organizationservice  # 本地文件所在路径
 #        git:
 #          uri: https://github.com/carnellj/config-repo/
 #          searchPaths: licensingservice,organizationservice
@@ -20,3 +21,11 @@ spring:
 # dev: ![](https://tva1.sinaimg.cn/large/006y8mN6gy1g9b92jgdsxj31ii0u0qd8.jpg)
 # 这是因为如果在licensingservice.yml中定义一个属性，而不在其它环境配置文件（licensingservice-dev.yml）中定义他那么Spring框架将会用这个默认值
 
+eureka:
+  instance:
+    preferIpAddress: true # 注册服务的ip，而不是服务器名称
+  client:
+    registerWithEureka: true  # 注册到Eureka
+    fetchRegistry: false # 本地不缓存注册信息
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

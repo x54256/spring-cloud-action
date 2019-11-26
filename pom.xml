@@ -6,6 +6,8 @@
     <modules>
         <module>confserver</module>
         <module>licensing-service</module>
+        <module>eurekasvr</module>
+        <module>organization-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -32,17 +34,6 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.junit.vintage</groupId>
-                        <artifactId>junit-vintage-engine</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>

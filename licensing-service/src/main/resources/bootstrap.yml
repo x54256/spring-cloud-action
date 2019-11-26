@@ -6,7 +6,8 @@ spring:
       default
   cloud:
     config:
-      uri: http://localhost:8888   # Spring Cloud Config服务器的地址
+      enabled: true # 如果配置服务注册到Eureka中，就不用配置地址了
+#      uri: http://localhost:8888   # Spring Cloud Config服务器的地址
 management:
   endpoints:
     web:

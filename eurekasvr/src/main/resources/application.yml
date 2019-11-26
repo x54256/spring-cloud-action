@@ -1,0 +1,11 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    registerWithEureka: false # 不要注册到Eureka服务器，因为他本身就是Eureka服务
+    fetchRegistry: false  # 不要在本地缓存注册表信息
+  server:
+    waitTimeInMsWhenSyncEmpty: 5  # Eureka启动后会等待5min，在这5min内，Eureka并不会告诉任何服务注册的信息，为了让所有服务都有时间向它注册
+# 注：服务注册需要30s才会显示在Eureka服务中，因为Eureka需要从服务接受3次连续心跳报，每次间隔10s。
+  
