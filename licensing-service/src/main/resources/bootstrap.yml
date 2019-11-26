@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: licensingservice
+  profiles:
+    active:
+      default
+  cloud:
+    config:
+      uri: http://localhost:8888   # Spring Cloud Config服务器的地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health

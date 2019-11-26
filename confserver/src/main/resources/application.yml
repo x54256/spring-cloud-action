@@ -1,0 +1,22 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///Users/x5456/Desktop/spring-cloud-action/confserver/src/main/resources/config/licensingservice # 本地文件所在路径
+#        git:
+#          uri: https://github.com/carnellj/config-repo/
+#          searchPaths: licensingservice,organizationservice
+#          username: native-cloud-apps
+#          password: 0ffended
+
+## 访问http://127.0.0.1:8888/licensingservice/default 和 http://127.0.0.1:8888/licensingservice/dev 会发现一个其妙的结果
+
+# default: ![](https://tva1.sinaimg.cn/large/006y8mN6gy1g9b920h745j319z0u0thg.jpg)
+# dev: ![](https://tva1.sinaimg.cn/large/006y8mN6gy1g9b92jgdsxj31ii0u0qd8.jpg)
+# 这是因为如果在licensingservice.yml中定义一个属性，而不在其它环境配置文件（licensingservice-dev.yml）中定义他那么Spring框架将会用这个默认值
+
