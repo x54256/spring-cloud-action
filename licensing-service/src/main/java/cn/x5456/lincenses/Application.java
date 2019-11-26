@@ -2,6 +2,7 @@ package cn.x5456.lincenses;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @EnableDiscoveryClient  // 使应用程序可以使用DiscoveryClient和Ribbon库
 @EnableFeignClients
+@EnableCircuitBreaker   // 为服务使用Hystrix（客户端熔断）
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
